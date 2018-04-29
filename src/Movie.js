@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import LinesEllipsis from 'react-lines-ellipsis';
 //yarn add prop-types
 import './Movie.css';
 
@@ -15,8 +16,14 @@ function Movie({title, poster, genres, synopsis}) {
                 <div className="Movie__Genres">
                     {genres.map((genre, index) => <MovieGenre genre={genre} key={index} />)}
                 </div>
-                <p className="Movie__synopsis">
-                    {synopsis}
+                <p className="Movie__Synopsis">
+                    <LinesEllipsis
+                        text={synopsis}
+                        maxLine='3'
+                        ellipsis='...'
+                        trimRight
+                        basedOn='letters'
+                    />
                 </p>
             </div>
         </div>
@@ -25,7 +32,7 @@ function Movie({title, poster, genres, synopsis}) {
 
 function MoviePoster({ poster, alt }){
     return (
-        <img src={poster} alt={alt} title={alt} className="Movie_Poster" />
+        <img className="Movie__Poster" src={poster} alt={alt} title={alt} />
     );
 };
 

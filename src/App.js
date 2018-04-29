@@ -35,15 +35,16 @@ class App extends Component {
 
   //arrow fuctions에서 => return을 하지 않는다(자동으로 return)
   _callApi = () => {
-    return fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+    return fetch('https://yts.am/api/v2/list_movies.json?sort_by=download_count')
       .then(response => response.json())
       .then(json => json.data.movies)
       .catch(err => console.log(err))
   }
 
   render() {
+    const { movies } = this.state;
     return (
-      <div className="App">
+      <div className={movies ? "App":"App--loading"}>
         {this.state.movies ? this._renderMovies() : 'Loading...'}
       </div>
     );
